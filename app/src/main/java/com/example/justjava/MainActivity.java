@@ -12,7 +12,7 @@ public class MainActivity extends AppCompatActivity {
     /*
    creates a global variable and assigns value 2
     */
-    int quantity =2;
+    int quantity = 2;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,11 +39,16 @@ public class MainActivity extends AppCompatActivity {
             display(quantity);
         }
     }
-/*
-this method is called when the order button is clicked
- */
+
+    /*
+    this method is called when the order button is clicked
+     */
     public void sendMessage(View view) {
-        displayPrice(quantity * 5);
+        String priceMessage = "Total: $" + (quantity *5);
+        displayMessage(priceMessage);
+        priceMessage= priceMessage + "\nThank you!";
+        displayMessage(priceMessage);
+       // displayPrice(quantity * 5);
     }
 
     /**
@@ -55,10 +60,18 @@ this method is called when the order button is clicked
         quantityTextView.setText("" + number);
     }
 
-    private void displayPrice(int number){
+    private void displayPrice(int number) {
         TextView priceTextView = (TextView) findViewById(
-                R.id.price_text_view   );
+                R.id.price_text_view);
         priceTextView.setText(NumberFormat.getCurrencyInstance().format(number));
+    }
+
+    /**
+     * This method displays the given text on the screen.
+     */
+    private void displayMessage(String message) {
+        TextView priceTextView = (TextView) findViewById(R.id.price_text_view);
+        priceTextView.setText(message);
     }
 
 }
